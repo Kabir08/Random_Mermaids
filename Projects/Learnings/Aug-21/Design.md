@@ -195,3 +195,53 @@ flowchart TD
     style O fill:#e0e0e0,stroke:#333,stroke-width:2px
     style P fill:#ffe0b2,stroke:#333,stroke-width:2px
 ```
+
+### Docker Container Execution Pipeline
+
+```mermaid
+flowchart TD
+    subgraph "The User's Command"
+        A["User types: docker run ..."]
+    end
+
+    subgraph "The Docker Engine"
+        B["Docker Client (Terminal)"] --> C["Docker Daemon: Processes Request"]
+        C -- "Uses API" --> D["Docker API"]
+    end
+
+    subgraph "The Host OS"
+        E["Host OS: Linux"] 
+        F["Linux Kernel"]
+        E -- "Relies on" --> F
+    end
+
+    subgraph "Core Kernel Features"
+        G["Namespaces: Isolation"]
+        H["Cgroups: Resource Limits"]
+    end
+
+    subgraph "The Container"
+        I["Application"] --> J["Dependencies"]
+        J --> K["Container Layer"]
+    end
+
+    C -- "Sends System Calls" --> F
+    F -- "Utilizes" --> G
+    F -- "Utilizes" --> H
+    G --> K
+    H --> K
+
+    K -- "Executes" --> I
+    K -- "Runs" --> J
+
+    style A fill:#e0f7fa,stroke:#333,stroke-width:2px
+    style B fill:#fff59d,stroke:#333,stroke-width:2px
+    style C fill:#ffe0b2,stroke:#333,stroke-width:2px
+    style E fill:#c8e6c9,stroke:#333,stroke-width:2px
+    style F fill:#a5d6a7,stroke:#333,stroke-width:2px
+    style G fill:#b3e5fc,stroke:#333,stroke-width:2px
+    style H fill:#b3e5fc,stroke:#333,stroke-width:2px
+    style I fill:#f48fb1,stroke:#333,stroke-width:2px
+    style J fill:#f8bbd0,stroke:#333,stroke-width:2px
+    style K fill:#e1bee7,stroke:#333,stroke-width:2px
+```
