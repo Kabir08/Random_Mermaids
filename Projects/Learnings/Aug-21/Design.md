@@ -142,3 +142,56 @@ flowchart TD
 
     I --> J["Perform Hardware Operations"]
 ```
+
+### Software to Hardware Execution Pipeline (PC & Robotics)
+
+```mermaid
+flowchart TD
+    subgraph "The World of Software & Signals"
+        A["Software Instruction: e.g., Rotate motor"] --> B["Runtime Environment: Translates Code"]
+        B -- "Sends Electrical Signal" --> C["Microcontroller / CPU"]
+    end
+
+    subgraph "The World of Physics & Electromagnetism"
+        C -- "Sends Signal to" --> D["Actuator Driver / Controller: Motor Driver"]
+        D -- "Regulates Power" --> E["Electric Motor / Actuator"]
+        subgraph "How a Motor Works"
+            E --> F["Coil of Wire"]
+            F -- "Current creates Magnetic Field" --> G["Electromagnet"]
+            G -- "Repulsion & Attraction" --> H["Rotor (Spinning part)"]
+            H --> I["Generates Mechanical Motion"]
+        end
+    end
+
+    subgraph "The World of Sensing"
+        J["Physical Property: Temperature, Light"] --> K["Sensor: Thermistor, Photodiode"]
+        K -- "Converts to Electrical Signal" --> C
+    end
+
+    subgraph "The Fundamental Building Blocks"
+        I --> L["Robot Arm Moves"]
+        H -- "Causes" --> L
+        G --> M["Physics: Electromagnetism"]
+        D --> M
+        C -- "Made of" --> N["Transistors"]
+        N --> O["Physics: Quantum Mechanics"]
+        O --> P["Control of Electrons"]
+    end
+
+    style A fill:#e0f7fa,stroke:#333,stroke-width:2px
+    style B fill:#fff59d,stroke:#333,stroke-width:2px
+    style C fill:#f48fb1,stroke:#333,stroke-width:2px
+    style D fill:#f8bbd0,stroke:#333,stroke-width:2px
+    style E fill:#a5d6a7,stroke:#333,stroke-width:2px
+    style F fill:#c8e6c9,stroke:#333,stroke-width:2px
+    style G fill:#c8e6c9,stroke:#333,stroke-width:2px
+    style H fill:#b3e5fc,stroke:#333,stroke-width:2px
+    style I fill:#81c784,stroke:#333,stroke-width:2px
+    style J fill:#cfd8dc,stroke:#333,stroke-width:2px
+    style K fill:#e1bee7,stroke:#333,stroke-width:2px
+    style L fill:#64b5f6,stroke:#333,stroke-width:2px
+    style M fill:#e6ee9c,stroke:#333,stroke-width:2px
+    style N fill:#ffe0b2,stroke:#333,stroke-width:2px
+    style O fill:#e0e0e0,stroke:#333,stroke-width:2px
+    style P fill:#ffe0b2,stroke:#333,stroke-width:2px
+```
